@@ -41,5 +41,6 @@ Route::get('accept/{token}', 'EventInvitesController@accept')->name('accept');
 Route::delete('delete-multiple-invites', [EventInvitesController::class, 'deleteMultiple'])->name('invites.multiple-delete');
 
 
-Route::get('dtable-posts-lists', [AjaxCrudEventController::class, 'index']);
-Route::get('dtable-custom-posts', [AjaxCrudEventController::class, 'get_custom_posts']);
+Route::get('dtable-event-lists', [AjaxCrudEventController::class, 'index']);
+Route::get('dtable-custom-event', [AjaxCrudEventController::class, 'get_custom_event']);
+Route::get('statistics', [AjaxCrudEventController::class, 'get_statistics']);

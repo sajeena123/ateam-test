@@ -20,10 +20,10 @@ class AjaxCrudEventController extends Controller
          return view('dtable.custom_filter');
     }
 
-    public function get_custom_posts(){
+    public function get_custom_event(){
         $eventQuery = Event::with('creator');
 
-        $start_date = (!empty($_GET["start_date"])) ? ($_GET["start_date"]) : ('');
+       $start_date = (!empty($_GET["start_date"])) ? ($_GET["start_date"]) : ('');
         $end_date = (!empty($_GET["end_date"])) ? ($_GET["end_date"]) : ('');
 
         if($start_date && $end_date){
@@ -44,6 +44,10 @@ class AjaxCrudEventController extends Controller
             return $events->creator->first_name;
         })
             ->make(true);
+
+    }
+    public function get_statistics()
+    {
 
     }
 
