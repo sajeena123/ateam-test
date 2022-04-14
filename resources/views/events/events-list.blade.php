@@ -8,65 +8,72 @@
                 <div class="card">
                     <div class="card-header">Event Listing</div>
                     <div class="card-body">
-    <div class="row">
+                    <div class="row justify-content-center">
         <div class="col-sm-8 col-sm-push-2">
-            <h1>Upcoming Events</h1>
-            <a href="{{ route('event-add') }}" class="btn btn-success">Add New Event</a>
 
-            @foreach($upcomingEvents as $event)
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-heading">
-                            <a href="{{ route('event-view', $event->id) }}">{{ $event->title }}</a>
-                        </h3>
-                        <small>{{ $event->address }}</small>
-                    </div>
-                    <div class="panel-body">
-                        <div class="">
-                            <strong>Start date: </strong>{{$event->start_date}}
-                            <br>
-                            <strong>End date: </strong>{{$event->end_date}}
-                            <br>
-                            {{--<strong>Created by: </strong><a href="#">{{$event->creator->name}}</a>--}}
-                        </div>
-                        <div class="">
-                            <p>{{$event->description}}</p>
-                        </div>
-                    </div>
-                </div>
+        <div style="float: right;"><a href="{{ route('event-add') }}" class="btn btn-success">Add New Event</a></div><br>
+            <h1>Upcoming Events</h1>
+            <br>
+            <table class="table table-bordered table-striped" id="laravel_datatable">
+       <thead>
+          <tr>
+             <th>ID</th>
+             <th>Title</th>
+             <th>Start Date</th>
+             <th>End Date</th>
+
+          </tr>
+       </thead>
+       @if(count($upcomingEvents) == 0)
+       <tr>
+             <td colspan="4" align="center">No upcoming events</td> </tr>
+            @else
+            @foreach($upcomingEvents as $key=> $event)
+
+            <tr>
+             <td>{{ ++$key}}</td>
+             <td><a href="{{ route('event-view', $event->id) }}">{{ $event->title }}</a></td>
+             <td>{{$event->start_date}}</th>
+             <td>{{$event->end_date}}</td>
+
+          </tr>
+
             @endforeach
+            @endif
+            </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-sm-8 col-sm-push-2">
             <h1>Past Events</h1>
+           <br>
+            <table class="table table-bordered table-striped" id="laravel_datatable">
+       <thead>
+          <tr>
+             <th>ID</th>
+             <th>Title</th>
+             <th>Start Date</th>
+             <th>End Date</th>
 
-            @if(count($pastEvents) == 0)
-                <h1>No past event</h1>
+          </tr>
+       </thead>
+       @if(count($pastEvents) == 0)
+       <tr>
+             <td colspan="4" align="center">No upcoming events</td> </tr>
             @else
-                @foreach($pastEvents as $event)
-                    <div class="panel panel-danger">
-                        <div class="panel-heading">
-                            <h3 class="panel-heading">
-                                <a href="{{ route('event-view', $event->id) }}">{{ $event->title }}</a>
-                            </h3>
-                            <small>{{ $event->address }}</small>
-                        </div>
-                        <div class="panel-body">
-                            <div class="">
-                                <strong>Start date: </strong>{{$event->start_date}}
-                                <br>
-                                <strong>End date: </strong>{{$event->end_date}}
-                                <br>
-                                {{--<strong>Created by: </strong><a href="#">{{$event->creator->name}}</a>--}}
-                            </div>
-                            <div class="">
-                                <p>{{$event->description}}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+            @foreach($pastEvents as $key=> $event)
+
+            <tr>
+            <td>{{ ++$key}}</td>
+             <td><a href="{{ route('event-view', $event->id) }}">{{ $event->title }}</a></td>
+             <td>{{$event->start_date}}</th>
+             <td>{{$event->end_date}}</td>
+
+          </tr>
+
+            @endforeach
             @endif
+            </table>
         </div>
     </div>
 @stop

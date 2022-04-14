@@ -24,4 +24,5 @@ class Event extends Model
         return $this->HasMany(Event_invites::class, 'event_id');
     }
 
+
 }

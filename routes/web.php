@@ -36,7 +36,7 @@ Route::get('events/view/{event}', [EventController::class, 'view'])->name('event
 
 Route::get('invite/{event_id}', [EventInvitesController::class, 'invite'])->name('invite');
 Route::post('invite/add',[EventInvitesController::class, 'save'])->name('process');
-Route::get('invite/delete/{id}',[EventInvitesController::class, 'destroy'])->name('delete');
+Route::delete('invite/delete',[EventInvitesController::class, 'destroy'])->name('invites.delete');
 Route::get('accept/{token}', 'EventInvitesController@accept')->name('accept');
 Route::delete('delete-multiple-invites', [EventInvitesController::class, 'deleteMultiple'])->name('invites.multiple-delete');
 

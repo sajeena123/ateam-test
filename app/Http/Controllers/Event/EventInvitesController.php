@@ -1,14 +1,16 @@
 <?php
+
 namespace App\Http\Controllers\Event;
+
 use App\Http\Controllers\Controller;
 use App\Models\Event_invites;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEvent_invitesRequest;
 use App\Http\Requests\UpdateEvent_invitesRequest;
 use Illuminate\Support\Str;
+
 class EventInvitesController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -57,26 +59,18 @@ class EventInvitesController extends Controller
         ]);
         return redirect()->route('event-view', ['event' => $event_id]);
     }
-    public function checkEmail()
-    {
-        //$invites = Event_invites::all()->where([]])->first();
-        if ($user) {
-            return Response::json(Input::get('email') . ' is already taken');
-        } else {
-            return Response::json(Input::get('email') . ' Username is available');
-        }
-    }
     /**
      * Delete a record.
      *
      * @param  \App\Http\Requests
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request)
     {
-        $category = Event_invites::find($id);
-        $category->delete();
-        return back()->with('success', 'Attendee removed successfully');
+        $id = $request->id;
+        $event = Event_invites::find($id);
+        $event->delete();
+        return response()->json(['status' => true, 'message' => "Attendee deleted successfully."]);
     }
     public function deleteMultiple(Request $request)
     {
